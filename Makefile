@@ -1,20 +1,12 @@
 CC = gcc
-CFLAGS = -Wall	-I$(RAYLIB_PATH)/include
-LIBS = -L$(RAYLIB_PATH)/lib	-lraylib -lopengl32 -lgdi32 -lwinmm
+SRC = rayy.c
+TARGET = rayy
 
-# default output = a.exe
+CFLAGS = -Wall -I$(RAYLIB_PATH)/include
+LIBS = -L$(RAYLIB_PATH)/lib -lraylib -lopengl32 -lgdi32 -lwinmm
+
 all:
-	$(CC) square.c $(CFLAGS) $(LIBS)
-
-# output as filename.exe
-named:
-	$(CC) square.c -o square.exe $(CFLAGS) $(LIBS)
-
-run:
-	./a.exe
-
-run_named:
-	./main.exe
+	$(CC) $(SRC) -o $(TARGET).exe $(CFLAGS) $(LIBS)
 
 clean:
-	del a.exe main.exe
+	rm -f *.exe *.o
