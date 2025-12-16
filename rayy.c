@@ -35,7 +35,7 @@ int main(void)
     srand(time(NULL));
 
    
-    void resetGame() {
+    void resetGame(){
         for(int r=0;r<ROWS;r++)
             for(int c=0;c<COLS;c++){
                 revealed[r][c]=false;

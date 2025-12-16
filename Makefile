@@ -4,17 +4,17 @@ LIBS = -LE:/raylib-5.5_win64_mingw-w64/raylib-5.5_win64_mingw-w64/lib -lraylib -
 
 # default output = a.exe
 all:
-	$(CC) rayy.c $(CFLAGS) $(LIBS)
+	$(CC) lynxlyy.c $(CFLAGS) $(LIBS)
 
 # output as filename.exe
 named:
-	$(CC) rayy.c -o rayy.exe $(CFLAGS) $(LIBS)
+	$(CC) lynxlyy.c -o lynxlyy.exe $(CFLAGS) $(LIBS)
 
 run:
 	./a.exe
 
 run_named:
-	./rayy.exe
+	./lynxlyy.exe
 
 clean:
-	del a.exe rayy.exe
+	del a.exe lynxlyy.exe
