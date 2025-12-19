@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include<stdlib.h>
 #include<stdbool.h>
+#include<time.h>
 
 int size = 12;
 
@@ -11,12 +12,34 @@ int main(){
     bool flagarr[12][12] = {false};  // store flags
     bool highlight[12][12]={false};
 
+// -------------------BOMB ASSISNMENT----------------------
+    srand(time(NULL)); // seed once at start of the game
+    bool isMine[12][12]={false};  // it is bool type lol
+
+    int count=15;
+    int placed=0;
+
     InitWindow(50*12, 50*12, "Easylevel");
+
+    while(placed<count){
+        int r=rand()%12;
+        int c=rand()%12;
+        if(!isMine[r][c]){  
+            isMine[r][c]=true;
+            placed++;
+        }
+
+    }
 
     Image img = LoadImage("1f6a9.png");
     ImageResize(&img, 48, 48);
     Texture2D flage = LoadTextureFromImage(img);
     UnloadImage(img);
+
+    Image bom = LoadImage("BOMB.png");
+    ImageResize(&bom, 48, 48);
+    Texture2D bomb_tex = LoadTextureFromImage(bom);
+    UnloadImage(bom);
 
     while(!WindowShouldClose()){
         BeginDrawing();
@@ -33,11 +56,17 @@ int main(){
 
                 if(highlight[ver][i]==true){
                 DrawRectangle(i*50,ver*50, 48,48, PINK);
+                
+                 if(isMine[ver][i]==true){
+                 DrawTexture(bomb_tex, i*50, ver*50, WHITE);
+                }
                  }
+
+               
         }
     }
 
-        // left click highlight
+        //-------------------------- left click highlight--------------------------------
         if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
             click = GetMousePosition();
             int col = click.x / 50;
@@ -49,7 +78,7 @@ int main(){
 
         }
 
-        // right click toggle flag
+        //------------------------- right click toggle flag----------------------
         if(IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)){
             click = GetMousePosition();
             int col = click.x / 50;
@@ -58,7 +87,8 @@ int main(){
             valy = row * 50;
 
             if(col >= 0 && col < 12 && row >= 0 && row < 12){
-                flagarr[row][col] = !flagarr[row][col];
+                flagarr[row][col] = !flagarr[row][col]; // true->false or false->true
+                //initially false
             }
         }
         
