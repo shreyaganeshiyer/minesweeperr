@@ -1,20 +1,17 @@
 CC = gcc
-CFLAGS = -Wall -IE:/raylib-5.5_win64_mingw-w64/raylib-5.5_win64_mingw-w64/include
+CFLAGS = -Wall -std=c11 -IE:/raylib-5.5_win64_mingw-w64/raylib-5.5_win64_mingw-w64/include
 LIBS = -LE:/raylib-5.5_win64_mingw-w64/raylib-5.5_win64_mingw-w64/lib -lraylib -lopengl32 -lgdi32 -lwinmm
 
-# default output = a.exe
-all:
-	$(CC) main.c $(CFLAGS) $(LIBS)
+SRC = main.c
+OUT = minesweeper.exe
 
-# output as filename.exe
-named:
-	$(CC) main.c -o main.exe $(CFLAGS) $(LIBS)
+all: $(OUT)
 
-run:
-	./a.exe
+$(OUT): $(SRC)
+	$(CC) $(CFLAGS) $(SRC) -o $(OUT) $(LIBS)
 
-run_named:
-	./main.exe
+run: $(OUT)
+	./$(OUT)
 
 clean:
-	del a.exe main.exe
+	del $(OUT)
