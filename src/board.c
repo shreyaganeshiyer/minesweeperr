@@ -2,6 +2,10 @@
 #include<stdlib.h>
 #include "raylib.h"
 #include "time.h"
+<<<<<<< HEAD
+=======
+#include<stdlib.h>
+>>>>>>> f1267efe8e24c1fd0a47650e1c8ae3ed18342e7a
 
 
 int size = 12;
