@@ -36,8 +36,8 @@ int main(){
     Texture2D flage = LoadTextureFromImage(img);
     UnloadImage(img);
 
-    Image bom = LoadImage("BOMB.png");
-    ImageResize(&bom, 60, 60);
+    Image bom = LoadImage("BOMB.png"); ///cpu
+    ImageResize(&bom, 48, 48);
     Texture2D bomb_tex = LoadTextureFromImage(bom);
     UnloadImage(bom);
 
