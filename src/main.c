@@ -1,9 +1,9 @@
 #include "raylib.h"
 #include "assets.h"
-
 #include<stdlib.h>
 #include<stdbool.h>
 #include<time.h>
+
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 800
 #define TILE_HEIGHT 50
@@ -26,12 +26,11 @@ typedef enum{
     STATE_LOSE,
     STATE_WIN
 }GameState;
-void GameUpdate(){
-    
-void GameUpdate() {
-    UpdateMusicStream(music[MUSIC_ONE]);
 
-    switch (gameState) {
+void GameUpdate(){
+    UpdateMusicStream(music[GameMusic]);
+
+    switch (GameState) {
     case STATE_MAIN_MENU:
         if (IsKeyPressed(KEY_N)) {
             GamePlaySound(SOUND_TWO);
