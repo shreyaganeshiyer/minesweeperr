@@ -4,18 +4,22 @@
 #include "raylib.h"
 #include<stdbool.h>
 
+extern Image flagi;
+extern Image minei;
 
-extern Texture2D texMine;
-extern Texture2D texFlag;
+extern Texture2D Mine;
+extern Texture2D Flag;
 
 extern Sound Click;
 extern Sound Blast;
 
 extern Music GameMusic;
-extern bool isSoundEnabled={true};
-extern bool isMusicEnabled={true};
 
-void LoadAssets();
-void UnloadAssets();
+//-------------- main.c Required Variabless------------------------
+extern bool isSoundEnabled;
+extern bool isMusicEnabled;
+
+void LoadGameAssets();
+void UnloadGameAssets();
 
 #endif

@@ -11,9 +11,9 @@ typedef struct{
 typedef int Board[12][12];
 
 void initboard(Board *table){
-    for(int i=0;i<;i++){
-        for(int j=0;j<table->cols;j++){
-
+    for(int r=0;i<;i++){
+        for(int c=0;j<table->cols;j++){
+            b->cells[r][c]=0;
         }
     }
 
