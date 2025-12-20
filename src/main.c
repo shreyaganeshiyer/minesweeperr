@@ -37,7 +37,7 @@ int main(){
     UnloadImage(img);
 
     Image bom = LoadImage("BOMB.png");
-    ImageResize(&bom, 48, 48);
+    ImageResize(&bom, 60, 60);
     Texture2D bomb_tex = LoadTextureFromImage(bom);
     UnloadImage(bom);
 
