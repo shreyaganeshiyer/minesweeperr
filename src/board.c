@@ -36,12 +36,12 @@ int main(){
 
     }
 
-    Image img = LoadImage("1f6a9.png");
+    Image img = LoadImage("assets/1f6a9.png");
     ImageResize(&img, 48, 48);
     Texture2D flage = LoadTextureFromImage(img);
     UnloadImage(img);
 
-    Image bom = LoadImage("BOMB.png"); ///cpu
+    Image bom = LoadImage("assets/BOMB.png"); ///cpu
     ImageResize(&bom, 48, 48);
     Texture2D bomb_tex = LoadTextureFromImage(bom);
     UnloadImage(bom);
