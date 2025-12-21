@@ -21,11 +21,7 @@ void LoadGameAssets(void)
     ImageResize(&minei, 48, 48);
     Mine = LoadTextureFromImage(minei);
     UnloadImage(minei);
-
-<<<<<<< HEAD
     
-=======
->>>>>>> 1bd7b7eb6f48e7feb43d5f139b1d789687796a89
     flagi = LoadImage("assets/1f6a9.png");
     ImageResize(&flagi, 48, 48);
     Flag = LoadTextureFromImage(flagi);
