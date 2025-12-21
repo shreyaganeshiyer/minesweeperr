@@ -17,12 +17,12 @@ bool isMusicEnabled={true};
 
 void LoadGameAssets(void)
 {
-    minei = LoadImage("C:/Users/shrey/Desktop/ds_project/minesweeperr/assets/BOMB.png");
+    minei = LoadImage("assets/BOMB.png");
     ImageResize(&minei, 48, 48);
     Mine = LoadTextureFromImage(minei);
 
       UnloadImage(minei);
-    flagi = LoadImage("C:/Users/shrey/Desktop/ds_project/minesweeperr/assets/1f6a9.png");
+    flagi = LoadImage("assets/1f6a9.png");
     ImageResize(&flagi, 48, 48);
     Flag = LoadTextureFromImage(flagi);
       UnloadImage(flagi);
