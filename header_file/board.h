@@ -13,6 +13,6 @@ extern Board table;
 
 void init_table(Board *table);
 void placeMines(Board *table);
-int countMine(int x,int y, Board *table);
+int countMine(Board *table,int x,int y);
 
 #endif
