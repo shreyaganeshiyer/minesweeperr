@@ -12,8 +12,6 @@ void init_table(Board *table){
         }
     }
 }
- 
-
  // -------------------BOMB ASSISNMENT----------------------
 
 void placeMines(Board *table){

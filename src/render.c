@@ -40,7 +40,7 @@ int main(){
                     if(value==-1) DrawTexture(Mine, pixcol, pixrow, WHITE);
 
                  else{
-                    number=countMine(row,col,&mydesk);
+                    number=countMine(&mydesk,row,col);
                     char buff[2];
                     buff[0]= '0'+number; buff[1]='\0';
                         DrawText(buff,pixcol+18,pixrow+10,30,BLACK);
