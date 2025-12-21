@@ -8,6 +8,6 @@
 #include "raylib.h"
 #include "time.h"
 #include "assets.h"
-#include "board.h"
+
 
 #endif
