@@ -36,6 +36,7 @@ int main(){
 
                 if (highlight[row][col]){
                     DrawRectangle(pixcol, pixrow, 48, 48, PINK);
+
                     value=mydesk.grid[row][col];
                     if(value==-1) DrawTexture(Mine, pixcol, pixrow, WHITE);
 
@@ -43,11 +44,9 @@ int main(){
                     number=countMine(&mydesk,row,col);
                     char buff[2];
                     buff[0]= '0'+number; buff[1]='\0';
-                        DrawText(buff,pixcol+18,pixrow+10,30,BLACK);
+                    DrawText(buff,pixcol+18,pixrow+10,30,BLACK);
                  } 
                 }
-
-        // now use that value if needed
     }
 }
     
