@@ -3,6 +3,9 @@
 
 #include "raylib.h"
 #include<stdbool.h>
+#include<stdlib.h>
+#include<time.h>
+#include "board.h"
 
 extern Image flagi;
 extern Image minei;

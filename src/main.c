@@ -1,8 +1,4 @@
-#include "raylib.h"
 #include "assets.h"
-#include<stdlib.h>
-#include<stdbool.h>
-#include<time.h>
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 800
@@ -48,8 +44,8 @@ void GameUpdate(){
     case STATE_OPTIONS_MENU:
         if (IsKeyPressed(KEY_ENTER)) {
             PlayerState = STATE_MAIN_MENU;
-            GamePlaySound(Click);
-        }
+            GamePlaySound(Click); }
+            
         if (IsKeyPressed(KEY_S)) {
             isSoundEnabled = !isSoundEnabled;
            // don't play click sounds
