@@ -1,4 +1,5 @@
 #include "allheader.h"
+#include "dsa.h"
 
 Image flagi;
 Image minei;
@@ -21,6 +22,8 @@ bool flagarr[12][12] = {false};  // store flags
 bool isRevelead[12][12]={false};
 bool isMine[12][12]={false}; 
 GameState PlayerState =menu;
+void bfsReveal(Board *board, bool isRevealed[12][12], int row, int col);
+
 
 // --------------------- main()function definitions
 
@@ -79,6 +82,7 @@ void UpdateDrawPlay(){
                     DrawText(buff,pixcol+18,pixrow+10,30,BLACK); } 
                 }
     }
+ 
 }
 
         if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
@@ -86,9 +90,17 @@ void UpdateDrawPlay(){
             PlaySound(Click);
             int col = click.x / 50;
             int row = click.y / 50;
-            isRevelead[row][col]=true;
+            if(row>=0 && row<12 && col>=0 && col<12){
+                if(!isRevelead[row][col]){
+                    if(countMine(&table,row,col)==0){
+                        bfsReveal(&table,isRevelead,row,col);
+                }
+                else{
+                    isRevelead[row][col]=true;
+                }
+            }
         }
-       
+    }
         if(IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)){
             click = GetMousePosition();
             PlaySound(Click);
