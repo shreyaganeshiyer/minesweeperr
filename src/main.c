@@ -2,7 +2,7 @@
 
 int main(){
     InitWindow(12*50,12*50,"Minesweeper");
-    InitAudioDevice();
+   
     LoadGameAssets();
     SetTargetFPS(60);
     init_table(&table);

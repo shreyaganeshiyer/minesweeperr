@@ -40,7 +40,11 @@ void LoadGameAssets(void)
     UnloadImage(flagi);
 
     Click  = LoadSound("assets/assets_click.wav");
-    Blast = LoadSound("assets/assets_explosion.wav");
+    Blast = LoadSound("assets/explosion.mp3");
+
+    SetSoundVolume(Click, 0.25f);
+    SetSoundVolume(Blast, 1.0f);
+
     GameMusic = LoadMusicStream("assets/assets_game_music.mp3");
 }
 
@@ -87,11 +91,18 @@ void UpdateDrawPlay(){
 
         if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
             click = GetMousePosition();
-            PlaySound(Click);
+            
             int col = click.x / 50;
             int row = click.y / 50;
+
             if(row>=0 && row<12 && col>=0 && col<12){
+                if(table.grid[row][col]==-1){
+                isRevelead[row][col]==true;
+                PlaySound(Blast);
+                
+            }
                 if(!isRevelead[row][col]){
+                    
                     if(countMine(&table,row,col)==0){
                         bfsReveal(&table,isRevelead,row,col);
                 }
@@ -103,7 +114,7 @@ void UpdateDrawPlay(){
     }
         if(IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)){
             click = GetMousePosition();
-            PlaySound(Click);
+            
             int col = click.x / 50;
             int row = click.y / 50;
          
