@@ -9,7 +9,6 @@ int main(){
     placeMines(&table); 
     srand(time(NULL)); 
   
-
     while(!WindowShouldClose()){
     BeginDrawing();
     ClearBackground(RAYWHITE);
