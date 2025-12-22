@@ -35,6 +35,7 @@ typedef enum{
     menu, //0
     opt,  //1
     playin, //2
+    youlost,
 }GameState;
 
 extern Board table;

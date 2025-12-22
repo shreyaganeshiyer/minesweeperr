@@ -6,7 +6,7 @@ Image minei;
 Texture2D Mine;
 Texture2D Flag;
 
-Sound Click;
+Sound ClickSound;
 Sound Blast;
 Music GameMusic;
 
@@ -46,14 +46,15 @@ void UpdateDrawMenu(){
     if(IsKeyPressed(KEY_O)) PlayerState= opt;
 
     ClearBackground(RAYWHITE);
-    DrawText("MINESWEEPEER",200,100,50,BLACK);
-    DrawText("Press N to start", 260, 250, 30, DARKGREEN);
-    DrawText("Press O for Options", 240, 300, 30, DARKBLUE);
+    DrawText("MINESWEEPEER",130,100,50,BLACK);
+    DrawText("Press N to start", 130, 250, 30, DARKGREEN);
+    DrawText("Press O for Options", 130, 300, 30, DARKBLUE);
 }
 
 void UpdateDrawOption(){
-
-    printf("ill do this later thenks\n");
+    if(IsKeyPressed(KEY_M)) isMusicEnabled=!isMusicEnabled; // toggle
+    if(IsKeyPressed(KEY_S)) isSoundEnabled=!isSoundEnabled;
+   
 }
 
 void UpdateDrawPlay(){    
@@ -83,10 +84,16 @@ void UpdateDrawPlay(){
 
         if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
             click = GetMousePosition();
-            PlaySound(Click);
             int col = click.x / 50;
             int row = click.y / 50;
             isRevelead[row][col]=true;
+
+            SetSoundVolume(ClickSound,1);
+            PlaySound(ClickSound);
+            if(table.grid[row][col]==-1){ 
+                PlaySound(Blast);
+                PlayerState=youlost;
+            };
         }
        
         if(IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)){
@@ -100,6 +107,13 @@ void UpdateDrawPlay(){
         }
 }
 
+void UpdateDrawLOSE(){
+
+DrawText("HAHA YOU LOST DUMB",130,100,50,BLUE);
+
+
+
+}
 
 void UnloadGameAssets(void)
 {

@@ -2,25 +2,31 @@
 
 int main(){
     InitWindow(12*50,12*50,"Minesweeper");
+    srand(time(NULL)); 
     InitAudioDevice();
     LoadGameAssets();
     SetTargetFPS(60);
     init_table(&table);
     placeMines(&table); 
-    srand(time(NULL)); 
-  
+    
+    
+    PlayMusicStream(GameMusic);
+    SetMusicVolume(GameMusic,0.15f);
     while(!WindowShouldClose()){
     BeginDrawing();
+    UpdateMusicStream(GameMusic);
     ClearBackground(RAYWHITE);
 
             switch(PlayerState){
                 case menu: UpdateDrawMenu(); break;
                 case opt: UpdateDrawOption(); break;
                 case playin:UpdateDrawPlay(); break;
+                case youlost: UpdateDrawLOSE();break;
                 }
+
     EndDrawing();
     }
-
+    
     UnloadGameAssets();
     CloseAudioDevice();
     CloseWindow();
