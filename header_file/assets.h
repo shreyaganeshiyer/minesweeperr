@@ -40,7 +40,7 @@ typedef enum{
 extern Board table;
 extern GameState PlayerState;
 
-
+void LoadGameAssets();
 void init_table(Board *table);
 void placeMines(Board *table);
 int countMine(Board *table,int x,int y);
@@ -49,8 +49,6 @@ int countMine(Board *table,int x,int y);
 void UpdateDrawMenu();
 void UpdateDrawOption();
 void UpdateDrawPlay();
-
-
 void UnloadGameAssets();
 
 #endif
