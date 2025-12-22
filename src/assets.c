@@ -83,6 +83,7 @@ void UpdateDrawPlay(){
 
         if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
             click = GetMousePosition();
+            PlaySound(Click);
             int col = click.x / 50;
             int row = click.y / 50;
             isRevelead[row][col]=true;
@@ -90,6 +91,7 @@ void UpdateDrawPlay(){
        
         if(IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)){
             click = GetMousePosition();
+            PlaySound(Click);
             int col = click.x / 50;
             int row = click.y / 50;
          
