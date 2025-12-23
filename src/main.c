@@ -2,16 +2,16 @@
 
 int main(){
     InitWindow(12*50,12*50,"Minesweeper");
-    srand(time(NULL)); 
-    InitAudioDevice();
     LoadGameAssets();
     SetTargetFPS(60);
     init_table(&table);
     placeMines(&table); 
-    
-    
+
     PlayMusicStream(GameMusic);
     SetMusicVolume(GameMusic,0.15f);
+
+    srand(time(NULL));
+    
     while(!WindowShouldClose()){
     BeginDrawing();
     UpdateMusicStream(GameMusic);

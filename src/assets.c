@@ -1,4 +1,5 @@
 #include "allheader.h"
+#include "dsa.h"
 
 Image flagi;
 Image minei;
@@ -36,8 +37,12 @@ void LoadGameAssets(void)
     Flag = LoadTextureFromImage(flagi);
     UnloadImage(flagi);
 
-    Click  = LoadSound("assets/assets_click.wav");
-    Blast = LoadSound("assets/assets_explosion.wav");
+    ClickSound  = LoadSound("assets/assets_click.wav");
+    Blast = LoadSound("assets/explosion.mp3");
+
+    SetSoundVolume(ClickSound, 0.25f);
+    SetSoundVolume(Blast, 1.0f);
+
     GameMusic = LoadMusicStream("assets/assets_game_music.mp3");
 }
 
@@ -80,25 +85,32 @@ void UpdateDrawPlay(){
                     DrawText(buff,pixcol+18,pixrow+10,30,BLACK); } 
                 }
     }
+ 
 }
 
         if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
             click = GetMousePosition();
             int col = click.x / 50;
             int row = click.y / 50;
-            isRevelead[row][col]=true;
 
-            SetSoundVolume(ClickSound,1);
-            PlaySound(ClickSound);
-            if(table.grid[row][col]==-1){ 
-                PlaySound(Blast);
+            if(row>=0 && row<12 && col>=0 && col<12){
+                if(table.grid[row][col]==-1){
+                isRevelead[row][col]==true;
                 PlayerState=youlost;
-            };
+            }
+                if(!isRevelead[row][col]){  // init false -->true
+                    if(countMine(&table,row,col)==0){
+                    bfsReveal(&table,isRevelead,row,col); // isRevelead is sent as false
+                }
+                else{
+                    isRevelead[row][col]=true;
+                }
+            }
         }
-       
+    }
         if(IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)){
             click = GetMousePosition();
-            PlaySound(Click);
+            
             int col = click.x / 50;
             int row = click.y / 50;
          
@@ -108,18 +120,32 @@ void UpdateDrawPlay(){
 }
 
 void UpdateDrawLOSE(){
+DrawText("HAHA YOU LOST DUMB",90,100,30,RED);
+DrawText("Press Enter to Play AGAIN",90,150,30,BLUE);
+DrawText("Press ESC to QUIT THE GAME",90,200,30,BLUE);
+    if(IsKeyPressed(KEY_ENTER)) {
+        PlayerState=menu;
+        NewGame();
+    }
+}
 
-DrawText("HAHA YOU LOST DUMB",130,100,50,BLUE);
-
-
-
+void NewGame(){
+    init_table(&table);
+    placeMines(&table);
+    for(int i=0;i<12;i++){
+        for(int j=0;j<12;j++){
+            flagarr[i][j]=false;  // reset every goddamn thing that uses this play
+            isRevelead[i][j]=false;
+            isMine[i][j]=false;
+        }
+    }
 }
 
 void UnloadGameAssets(void)
 {
     UnloadTexture(Mine);
     UnloadTexture(Flag);
-    UnloadSound(Click);
+    UnloadSound(ClickSound);
     UnloadSound(Blast);
     UnloadMusicStream(GameMusic);
 }

@@ -9,7 +9,7 @@ extern Image minei;
 extern Texture2D Mine;
 extern Texture2D Flag;
 
-extern Sound Click;
+extern Sound ClickSound;
 extern Sound Blast;
 
 extern Music GameMusic;
@@ -41,15 +41,20 @@ typedef enum{
 extern Board table;
 extern GameState PlayerState;
 
+void NewGame();
 void LoadGameAssets();
 void init_table(Board *table);
 void placeMines(Board *table);
 int countMine(Board *table,int x,int y);
-
+void bfsReveal(Board *board, bool isRevealed[12][12], int startRow, int startCol);
 
 void UpdateDrawMenu();
 void UpdateDrawOption();
 void UpdateDrawPlay();
+void UpdateDrawLOSE();
+
 void UnloadGameAssets();
+
+
 
 #endif
