@@ -107,9 +107,6 @@ void UpdateDrawPlay(){
        
     }
 
-        if(GetKeyPressed()!=0) PlaySound(ClickSound);
-
-
         if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
             click = GetMousePosition();
             if(isSoundEnabled) PlaySound(ClickSound);
@@ -148,6 +145,7 @@ void UpdateDrawPlay(){
     }
 
 }
+
 
 void UpdateDrawLOSE(){
 DrawText("HAHA YOU LOST DUMB",90,100,30,RED);
