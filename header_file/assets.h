@@ -36,6 +36,7 @@ typedef enum{
     opt,  //1
     playin, //2
     youlost,
+    exploded
 }GameState;
 
 extern Board table;
