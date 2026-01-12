@@ -117,7 +117,7 @@ void UpdateDrawPlay(){
              // Mine clicking thinggg
             if(row>=0 && row<12 && col>=0 && col<12){
                 if(table.grid[row][col]==-1){
-                isRevelead[row][col]==true;
+                isRevelead[row][col]=true;
                 mineClicked=true;
                 Mineclicktime=GetTime();
              PlaySound(Blast); }
