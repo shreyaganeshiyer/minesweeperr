@@ -15,6 +15,12 @@ Music GameMusic;
 bool isSoundEnabled=true;
 bool isMusicEnabled=true;
 
+// -------------WIN state conditions ----------
+bool didWin=true;
+bool WinTriggered=false;
+double winTime=0.0;
+
+//---------------------------------
 Vector2 click;
 int value=0,number; 
 int pixrow=0,pixcol=0;
@@ -61,16 +67,27 @@ void UpdateDrawMenu(){
 
 void UpdateDrawOption(){
     if(IsKeyPressed(KEY_M)) isMusicEnabled=!isMusicEnabled;  // toggle
-    if(IsKeyPressed(KEY_S)) isSoundEnabled=!isSoundEnabled;
+    if(IsKeyPressed(KEY_S)) {
+        PlaySound(ClickSound);
+        isSoundEnabled=!isSoundEnabled;
+    }
     DrawText("[M]USIC",100,100,30,GREEN);
     DrawText("[S]OUND",100,200,30,BLUE);
     DrawText("RETURN TO MENU-Enter LEFT Arrow",50,300,30,BLUE);
     if(IsKeyPressed(KEY_LEFT)){
         PlayerState=menu;
     }
+
+    if(isMusicEnabled) DrawText("ENABLED",300,100,30,GREEN);
+    else DrawText("DISABLED",300,100,30,PINK);
+
+    if(isSoundEnabled) DrawText("ENABLED",300,200,30,GREEN);
+    else DrawText("DISABLED",300,200,30,PINK);
+
 }
 
 void UpdateDrawPlay(){    
+    if(PlayerState!=playin) return;
        for (int row = 0; row < 12; row++){
             for (int col = 0; col < 12; col++){
                 pixcol = col * 50;   // convert row/col to pixel
@@ -141,20 +158,46 @@ void UpdateDrawPlay(){
         }
 
         if (mineClicked && (GetTime() - Mineclicktime >1.5)) { // 2 seconds delay
-        PlayerState = youlost;
+        PlayerState = youlost;}
+
+// -------------------WIn case conditionss
+didWin=true;
+  for(int row=0;row<12;row++){
+        for(int cols=0;cols<12;cols++){
+            if(table.grid[row][cols]!=-1 && !isRevelead[row][cols]){
+                didWin=false;
+                break;
+            }
+            if(!didWin) break;
+        }
     }
+    if(didWin && !WinTriggered){
+        WinTriggered=true;
+        winTime=GetTime();
+    };
+
+    if (WinTriggered && (GetTime() - winTime > 4)) {  // 1.5 seconds delay
+    PlayerState = won;}
 
 }
 
 
 void UpdateDrawLOSE(){
-DrawText("HAHA YOU LOST DUMB",90,100,30,RED);
+DrawText("GAME OVER",90,100,30,RED);
 DrawText("Press Enter to Play AGAIN",90,150,30,BLUE);
 DrawText("Press ESC to QUIT THE GAME",90,200,30,BLUE);
     if(IsKeyPressed(KEY_ENTER)) {
         NewGame();
         PlayerState=menu;
     }
+}
+
+
+void Victoryy(){
+   DrawText("YOU WON !!!",100,200,40,BLUE);
+   DrawText("Press ENTER to play again",100,300,40,BLUE);
+   if(IsKeyPressed(KEY_ENTER)){ PlayerState=menu;
+    NewGame();}
 }
 
 void NewGame(){

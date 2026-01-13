@@ -29,6 +29,7 @@ int main(){
                 case opt: UpdateDrawOption(); break;
                 case playin:UpdateDrawPlay(); break;
                 case youlost: UpdateDrawLOSE();break;
+                case won: Victoryy(); break;
                 }
 
     EndDrawing();

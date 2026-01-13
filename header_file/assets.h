@@ -35,7 +35,8 @@ typedef enum{
     menu, //0
     opt,  //1
     playin, //2
-    youlost
+    youlost,
+    won
 }GameState;
 
 extern Board table;
@@ -52,6 +53,7 @@ void UpdateDrawMenu();
 void UpdateDrawOption();
 void UpdateDrawPlay();
 void UpdateDrawLOSE();
+void Victoryy();
 
 void UnloadGameAssets();
 
