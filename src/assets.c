@@ -73,8 +73,8 @@ void UpdateDrawOption(){
     }
     DrawText("[M]USIC",100,100,30,GREEN);
     DrawText("[S]OUND",100,200,30,BLUE);
-    DrawText("RETURN TO MENU-Enter LEFT Arrow",50,300,30,BLUE);
-    if(IsKeyPressed(KEY_LEFT)){
+    DrawText("RETURN TO MENU-ENTER",100,300,30,BLUE);
+    if(IsKeyPressed(KEY_ENTER)){
         PlayerState=menu;
     }
 
@@ -123,7 +123,6 @@ void UpdateDrawPlay(){
         }
        
     }
-
         if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
             click = GetMousePosition();
             if(isSoundEnabled) PlaySound(ClickSound);
@@ -176,16 +175,16 @@ didWin=true;
         winTime=GetTime();
     };
 
-    if (WinTriggered && (GetTime() - winTime > 4)) {  // 1.5 seconds delay
+    if (WinTriggered && (GetTime() - winTime >4)) {  // win time delay
     PlayerState = won;}
 
 }
 
 
 void UpdateDrawLOSE(){
-DrawText("GAME OVER",90,100,30,RED);
-DrawText("Press Enter to Play AGAIN",90,150,30,BLUE);
-DrawText("Press ESC to QUIT THE GAME",90,200,30,BLUE);
+DrawText("GAME OVER", 200, 200, 30, RED);
+DrawText("Press Enter to Play AGAIN", 95, 250, 30, BLUE);
+DrawText("Press ESC to QUIT THE GAME", 85, 300, 30, BLUE);
     if(IsKeyPressed(KEY_ENTER)) {
         NewGame();
         PlayerState=menu;
@@ -194,16 +193,19 @@ DrawText("Press ESC to QUIT THE GAME",90,200,30,BLUE);
 
 
 void Victoryy(){
-   DrawText("YOU WON !!!",100,200,40,BLUE);
-   DrawText("Press ENTER to play again",100,300,40,BLUE);
-   if(IsKeyPressed(KEY_ENTER)){ PlayerState=menu;
-    NewGame();}
+   DrawText("YOU WON !!!",200,260,40,BLUE);
+   DrawText("Press ENTER to play again",60,360,35,BLUE);
+   if(IsKeyPressed(KEY_ENTER)){ 
+    NewGame();
+    PlayerState=menu;
+    }
 }
 
 void NewGame(){
     init_table(&table);
     placeMines(&table);
-    mineClicked=false;  // didnt reset this shit
+    mineClicked=false;
+    WinTriggered=false;  // didnt reset this shit
     for(int i=0;i<12;i++){
         for(int j=0;j<12;j++){
             flagarr[i][j]=false;  // reset every goddamn thing that uses this play
